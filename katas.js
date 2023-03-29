@@ -1,16 +1,39 @@
-// Complete the function that takes one argument, a list of words, and returns the length of the longest word in the list.
+// We need to sum big numbers and we require your help.
 
-// For example:
+// Write a function that returns the sum of two numbers. The input numbers are strings and the function must return a string.
 
-// ['simple', 'is', 'better', 'than', 'complex'] ==> 7
-// Do not modify the input list.
+// Example
+// add("123", "321"); -> "444"
+// add("11", "99");   -> "110"
+// Notes
+// The input numbers are big.
+// The input is a string of only digits
+// The numbers are positives
+// }
 
-function longest(words) {
-  let longestWord = 0;
-  for ( let i = 0; i < words.length; i++) {
-    if (words[i].length > longestWord) {
-      longestWord = words[i].length
-    }
+// Solution
+
+function add(a, b) {
+  let res = "";
+  let sum;
+  let carry = 0;
+  while (a.length < b.length) {
+    a = "0" + a;
   }
-  return longestWord
+  while (b.length < a.length) {
+    b = "0" + b;
+  }
+
+  for (let i = a.length - 1; i >= 0; i--) {
+    sum = parseInt(a[i]) + parseInt(b[i]) + carry;
+    res = (sum % 10) + res;
+    carry = Math.floor(sum / 10);
+  }
+
+  if (carry > 0) {
+    res = carry + res;
+  }
+
+  return res;
+
 }
